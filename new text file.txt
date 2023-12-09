@@ -1,1 +1,48 @@
-freddy fazbear
+import random as r
+
+def startloop():
+    coins = 0
+    limit = 6
+    multipliercost = 20
+    limitbreakercost= 10
+    ticketcost = 0
+    multiplier = 1
+    lotteryprice = 0
+    print(f"pick one: 1 buy multiplier ({multiplierceuiost} coins), 2 buy limit breaker ({limitbreakercost} coins) 3 buy lottery ticket ({ticketcost})(first one free)or just skip" )
+    while True:
+        additiontocoins = (r.randint(1, limit))
+        coins = coins + additiontocoins * multiplier
+        lotteryprice = coins * (r.randint(0, limit) * multiplier)
+        print(f"you rolled: {additiontocoins} * {multiplier}, current balance {coins}")
+        got = input("your pick: " )
+        if got == '1':
+            if coins > multipliercost - 1:
+                coins = coins -20
+                multiplier += 1
+                multipliercost *= 3
+                print(f"good purchase,  current multiplier: {multiplier}, current multiplier cost: {multipliercost} " )
+            elif coins < multipliercost:
+                print(f"not enough money, it costs {multipliercost}" )
+        elif got == '2':
+            if coins > limitbreakercost - 1:
+                coins = coins -10
+                limit += 1
+                limitbreakercost += 1
+                print(f"good purchase, current limit: {limit} current limit breaker cost: {limitbreakercost}" )
+            elif coins < limitbreakercost:
+                print(f"not enough money, it costs {limitbreakercost}" )
+        elif got == '3':
+            if coins > ticketcost - 1:
+                coins = coins - ticketcost
+                coins += lotteryprice
+                ticketcost = lotteryprice * lotteryprice
+                print(f"good purchase, you won {lotteryprice}" )
+            elif coins < ticketcost:
+                print(f"get out of my casino please, first buy a ticket, it only costs {ticketcost} coins" )
+        else:
+            continue
+
+startloop()
+            
+        
+        
