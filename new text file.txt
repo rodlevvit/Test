@@ -1,6 +1,7 @@
 import random as r
 
 def startloop():
+	yes = True
     coins = 0
     limit = 6
     multipliercost = 20
